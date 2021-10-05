@@ -146,7 +146,7 @@ function updateCartTotal() {
 
         if(quantity == 1){
             var totalValue = total
-            specialPriceElement.innerText = '£' + totalValue + ''
+            specialPriceElement.innerText = '£' + totalValue + 'p'
         }
         else if(quantity == 3 && titleElement == 'Apple'){
             var numVal1 = total
@@ -155,11 +155,11 @@ function updateCartTotal() {
             specialPriceElement.innerText = '£' + totalValue.toFixed(1) + '0'
 
         }
-        else if(quantity == 3 && titleElement == 'Banana'){
+        else if(quantity == 2 && titleElement == 'Banana'){
             var numVal1 = total
-            var numVal2 = 13.32 / 100
+            var numVal2 = 25 / 100
             var totalValue = numVal1 - (numVal1 * numVal2)
-            specialPriceElement.innerText = '£' + totalValue.toFixed(1) + '0'
+            specialPriceElement.innerText = '£' + totalValue.toFixed(0) + 'p'
         }
     }
 
