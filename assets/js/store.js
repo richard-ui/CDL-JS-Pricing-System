@@ -39,7 +39,6 @@ function purchaseClicked() {
     var cartItems = document.getElementsByClassName('cart-items')[0] 
     var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
     for (var i = 0; i < cartItemNames.length; i++) {
-            //titlenames += cartItemNames[i].innerText
             titlenames.push(cartItemNames[i].innerText);
     }
 
@@ -99,7 +98,7 @@ function addItemToCart(sku, title, price, imageSrc) {
     var cartRowContents = `
 
         <div class="cart-item cart-column">
-            <span class="cart-item-title">${sku}</span>
+            <span class="cart-item-sku">${sku}</span>
         </div>
 
         <div class="cart-item cart-column">
@@ -107,12 +106,22 @@ function addItemToCart(sku, title, price, imageSrc) {
             <span class="cart-item-title">${title}</span>
         </div>
 
-        <span class="cart-price cart-column">${price}</span>
+        <div class="cart-item cart-column">
+            <span class="cart-price cart-column">${price}</span>
+        </div>
 
         <div class="cart-quantity cart-column">
             <input class="cart-quantity-input" type="number" value="1">
             <button class="btn btn-danger" type="button">Remove Product</button>
-        </div>`
+        </div>
+        
+        <div class="cart-item cart-column">
+            <span class="cart-special-price cart-column"></span>
+        </div>
+        
+        `
+
+        
 
     cartRow.innerHTML = cartRowContents
     cartItems.append(cartRow) // append row
@@ -127,6 +136,7 @@ function updateCartTotal() {
     var bookcounter1 = 0
     for (var i = 0; i < cartRows.length; i++) {
         var cartRow = cartRows[i]
+        var titleElement = cartRow.getElementsByClassName('cart-item-title')[0].innerText
         var priceElement = cartRow.getElementsByClassName('cart-price')[0]
         var specialPriceElement = cartRow.getElementsByClassName('cart-special-price')[0]
         var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
@@ -135,40 +145,25 @@ function updateCartTotal() {
         total = total + (price * quantity) // e.g 0 + 16
 
         if(quantity == 1){
-            bookcounter1 = bookcounter1 + 1
-            
+            var totalValue = total
+            specialPriceElement.innerText = '£' + totalValue + ''
+        }
+        else if(quantity == 3 && titleElement == 'Apple'){
+            var numVal1 = total
+            var numVal2 = 13.32 / 100
+            var totalValue = numVal1 - (numVal1 * numVal2)
+            specialPriceElement.innerText = '£' + totalValue.toFixed(1) + '0'
+
+        }
+        else if(quantity == 3 && titleElement == 'Banana'){
+            var numVal1 = total
+            var numVal2 = 13.32 / 100
+            var totalValue = numVal1 - (numVal1 * numVal2)
+            specialPriceElement.innerText = '£' + totalValue.toFixed(1) + '0'
         }
     }
 
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('cart-total-price')[0].innerText = '' + total + ''
-
-    if(bookcounter1 == 1){
-        var totalValue = total
-        document.getElementById("discountprice").innerHTML = totalValue.toFixed(2);
-    }
-    else if(bookcounter1 == 2){
-        var numVal1 = total
-        var numVal2 = 5 / 100; // 5%
-        var totalValue = numVal1 - (numVal1 * numVal2)
-        document.getElementById("discountprice").innerHTML = totalValue.toFixed(2);
-    }
-    else if(bookcounter1 == 3){
-        var numVal1 = total
-        var numVal2 = 10 / 100; // 5%
-        var totalValue = numVal1 - (numVal1 * numVal2)
-        document.getElementById("discountprice").innerHTML = totalValue.toFixed(2);
-    }
-    else if(bookcounter1 == 4){
-        var numVal1 = total
-        var numVal2 = 20 / 100; // 5%
-        var totalValue = numVal1 - (numVal1 * numVal2)
-        document.getElementById("discountprice").innerHTML = totalValue.toFixed(2);
-    }
-    else if(bookcounter1 == 5){
-        var numVal1 = total
-        var numVal2 = 25 / 100; // 5%
-        var totalValue = numVal1 - (numVal1 * numVal2)
-        document.getElementById("discountprice").innerHTML = totalValue.toFixed(2);
-    }
+     
 }
