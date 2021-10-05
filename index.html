@@ -35,7 +35,8 @@
         <section class="container content-section">
             <h2 class="section-header">Kata</h2>
             <div class="row shop-items">
-                <div class="col-4 shop-item">    
+                <div class="col-4 shop-item">
+                        <span class="shop-item-sku" style="display: none;">A</span>   
                         <span class="shop-item-title">Apple</span>
                         <img class="shop-item-image" src="assets/images/apple.jpg">
                         <div class="shop-item-details">
@@ -44,19 +45,12 @@
                         </div>
                 </div>
                 <div class="col-4 shop-item">
+                        <span class="shop-item-sku" style="display: none;">B</span>  
                         <span class="shop-item-title">Banana</span>
                         <img class="shop-item-image" src="assets/images/banana.jpg">
                         <div class="shop-item-details">
                             <span class="shop-item-price">30p</span>
                             <button class="btn btn-success shop-item-button"type="button">ADD TO CART</button>
-                        </div>
-                </div>
-                <div class="col-4 shop-item">
-                        <span class="shop-item-title">Prisoner of Askaban</span>
-                        <img class="shop-item-image" src="assets/images/book3.jpg">
-                        <div class="shop-item-details">
-                            <span class="shop-item-price">£8.00</span>
-                            <button class="btn btn-success shop-item-button" type="button">ADD TO CART</button>
                         </div>
                 </div>
             </div>
@@ -68,8 +62,9 @@
             <div class="cart-row">
                 <span class="cart-item cart-header cart-column">SKU</span>
                 <span class="cart-price cart-header cart-column">UNIT PRICE (pence)</span>
-                <span class="cart-price cart-header cart-column">Quantity</span>
-                <span class="cart-quantity cart-header cart-column">SPECIAL PRICE (pence)</span>
+                <span class="cart-quantity cart-header cart-column">Quantity</span>
+                <span class="cart-special-price cart-header cart-column">SPECIAL PRICE</span>
+                
             </div>
             <div class="cart-items">
 
@@ -77,7 +72,7 @@
 
             </div>
             <div class="cart-total">
-                <strong class="cart-total-title">Total:</strong>
+                <strong class="cart-total-title">Total Price:</strong>
                 <span class="cart-total-price">
                     <span><i class="fas fa-coins"></i></span>0
                 </span>
