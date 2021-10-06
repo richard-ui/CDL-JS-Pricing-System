@@ -120,9 +120,6 @@ function addItemToCart(sku, title, price, imageSrc) {
         </div>
         
         `
-
-        
-
     cartRow.innerHTML = cartRowContents
     cartItems.append(cartRow) // append row
     cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem) // add remove function to row
@@ -133,7 +130,7 @@ function updateCartTotal() {
     var cartItemContainer = document.getElementsByClassName('cart-items')[0]
     var cartRows = cartItemContainer.getElementsByClassName('cart-row')
     var total = 0
-    var bookcounter1 = 0
+
     for (var i = 0; i < cartRows.length; i++) {
         var cartRow = cartRows[i]
         var titleElement = cartRow.getElementsByClassName('cart-item-title')[0].innerText
@@ -144,7 +141,7 @@ function updateCartTotal() {
         var quantity = quantityElement.value
         total = total + (price * quantity) // e.g 0 + 16
 
-        if(quantity == 1){
+        if((quantity == 1) || (quantity == 2 && titleElement == 'Apple')){
             var totalValue = total
             specialPriceElement.innerText = '£' + totalValue + 'p'
         }
