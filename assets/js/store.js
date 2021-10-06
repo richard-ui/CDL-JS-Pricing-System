@@ -140,27 +140,29 @@ function updateCartTotal() {
         var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
         var price = parseFloat(priceElement.innerText.replace('£', ''))
         var quantity = quantityElement.value
+        
         total = total + (price * quantity) // e.g 0 + 16
+        var rowValue = 0
 
         if((quantity == 1) || (quantity == 2 && titleElement == 'Apple')){
-            let rowValue = total
+            rowValue = total
             specialPriceElement.innerText = '£' + rowValue + 'p'
         }
         else if(quantity == 3 && titleElement == 'Apple'){
             let numVal1 = total
             let numVal2 = 13.32 / 100
-            let rowValue = numVal1 - (numVal1 * numVal2)
+            rowValue = numVal1 - (numVal1 * numVal2)
             specialPriceElement.innerText = '£' + rowValue.toFixed(1) + '0'
 
         }
         else if(quantity == 2 && titleElement == 'Banana'){
             let numVal1 = total
             let numVal2 = 25 / 100
-            let rowValue = numVal1 - (numVal1 * numVal2)
+            rowValue = numVal1 - (numVal1 * numVal2)
             specialPriceElement.innerText = '£' + rowValue.toFixed(0) + 'p'
         }
         else if(titleElement == 'Strawberry' || 'Orange'){
-            let rowValue = total
+            rowValue = total
             specialPriceElement.innerText = '£' + rowValue + 'p'
         }
     }
