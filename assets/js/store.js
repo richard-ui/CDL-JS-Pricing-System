@@ -129,29 +129,31 @@ function addItemToCart(sku, title, price, imageSrc) {
 function updateCartTotal() {
     var cartItemContainer = document.getElementsByClassName('cart-items')[0]
     var cartRows = cartItemContainer.getElementsByClassName('cart-row')
-    var total = 0
-    var totVal = 0
+    
+    var totalValue = 0
+    var rowValue = 0
 
     for (var i = 0; i < cartRows.length; i++) {
         var cartRow = cartRows[i]
+        var total = 0
         var titleElement = cartRow.getElementsByClassName('cart-item-title')[0].innerText
         var priceElement = cartRow.getElementsByClassName('cart-price')[0]
         var specialPriceElement = cartRow.getElementsByClassName('cart-special-price')[0]
         var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
         var price = parseFloat(priceElement.innerText.replace('£', ''))
         var quantity = quantityElement.value
-        
+
         total = total + (price * quantity) // e.g 0 + 16
-        var rowValue = 0
 
         if((quantity == 1) || (quantity == 2 && titleElement == 'Apple')){
-            rowValue = total
-            specialPriceElement.innerText = '£' + rowValue + 'p'
+            totalValue = totalValue + total
+            specialPriceElement.innerText = '£' + total + 'p'
         }
         else if(quantity == 3 && titleElement == 'Apple'){
             let numVal1 = total
             let numVal2 = 13.32 / 100
             rowValue = numVal1 - (numVal1 * numVal2)
+            totalValue = totalValue + rowValue
             specialPriceElement.innerText = '£' + rowValue.toFixed(1) + '0'
 
         }
@@ -159,15 +161,18 @@ function updateCartTotal() {
             let numVal1 = total
             let numVal2 = 25 / 100
             rowValue = numVal1 - (numVal1 * numVal2)
+            totalValue = totalValue + rowValue
             specialPriceElement.innerText = '£' + rowValue.toFixed(0) + 'p'
         }
         else if(titleElement == 'Strawberry' || 'Orange'){
-            rowValue = total
-            specialPriceElement.innerText = '£' + rowValue + 'p'
+            totalValue = totalValue + total
+            specialPriceElement.innerText = '£' + total + 'p'
         }
+        document.getElementsByClassName('cart-total-price')[0].innerText = '£' + totalValue.toFixed(1) + ''
+     
     }
 
     //totVal = totVal + total
-    //document.getElementsByClassName('cart-total-price')[0].innerText = '£' + totVal + ''
+    //document.getElementsByClassName('cart-total-price')[0].innerText = '£' + totalValue.toFixed(1) + ''
      
 }
