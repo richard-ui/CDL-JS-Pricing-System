@@ -110,13 +110,13 @@ function addItemToCart(sku, title, price, imageSrc) {
             <span class="cart-price cart-column">${price}</span>
         </div>
 
-        <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
-            <button class="btn btn-danger" type="button">Remove Product</button>
-        </div>
-        
         <div class="cart-item cart-column">
             <span class="cart-special-price cart-column"></span>
+        </div>
+
+        <div class="cart-quantity cart-column">
+            <input class="cart-quantity-input" type="number" value="1">
+            <button class="btn btn-danger" type="button">Remove</button>
         </div>
         
         `
@@ -130,6 +130,7 @@ function updateCartTotal() {
     var cartItemContainer = document.getElementsByClassName('cart-items')[0]
     var cartRows = cartItemContainer.getElementsByClassName('cart-row')
     var total = 0
+    var totVal = 0
 
     for (var i = 0; i < cartRows.length; i++) {
         var cartRow = cartRows[i]
@@ -142,25 +143,29 @@ function updateCartTotal() {
         total = total + (price * quantity) // e.g 0 + 16
 
         if((quantity == 1) || (quantity == 2 && titleElement == 'Apple')){
-            var totalValue = total
-            specialPriceElement.innerText = '£' + totalValue + 'p'
+            let rowValue = total
+            specialPriceElement.innerText = '£' + rowValue + 'p'
         }
         else if(quantity == 3 && titleElement == 'Apple'){
-            var numVal1 = total
-            var numVal2 = 13.32 / 100
-            var totalValue = numVal1 - (numVal1 * numVal2)
-            specialPriceElement.innerText = '£' + totalValue.toFixed(1) + '0'
+            let numVal1 = total
+            let numVal2 = 13.32 / 100
+            let rowValue = numVal1 - (numVal1 * numVal2)
+            specialPriceElement.innerText = '£' + rowValue.toFixed(1) + '0'
 
         }
         else if(quantity == 2 && titleElement == 'Banana'){
-            var numVal1 = total
-            var numVal2 = 25 / 100
-            var totalValue = numVal1 - (numVal1 * numVal2)
-            specialPriceElement.innerText = '£' + totalValue.toFixed(0) + 'p'
+            let numVal1 = total
+            let numVal2 = 25 / 100
+            let rowValue = numVal1 - (numVal1 * numVal2)
+            specialPriceElement.innerText = '£' + rowValue.toFixed(0) + 'p'
+        }
+        else if(titleElement == 'Strawberry' || 'Orange'){
+            let rowValue = total
+            specialPriceElement.innerText = '£' + rowValue + 'p'
         }
     }
 
-    total = Math.round(total * 100) / 100
-    document.getElementsByClassName('cart-total-price')[0].innerText = '' + total + ''
+    //totVal = totVal + total
+    //document.getElementsByClassName('cart-total-price')[0].innerText = '£' + totVal + ''
      
 }
