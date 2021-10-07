@@ -8,7 +8,13 @@
 
 - Ive made use of plenty of functions, methods and reusable code in this project. These functions can handle the calculation of the products and the discount along with it.
 
-- I used 
+- I used functions to group blocks of code inside.  Doing it this way ensured that the function can be reused over and over again. For example the updateCartTotal() function had to be used many times. Therefore because its a function, i could use it over and over again in multiple other functions and methods.
+
+- Within the function ready() i Declare a for loop that ensures we loop through all the shop buttons for each item.
+
+- We also use another for loop to iterate through the quantity inputs of each item that has added to the cart table.
+
+- For quantity and the add to cart buttons whcih we discussed above, they have event listeners attached to them which triggers a function whenever the user interacts with them.
 
 ## Improvements?
 
